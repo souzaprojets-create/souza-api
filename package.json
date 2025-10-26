@@ -1,10 +1,15 @@
 {
   "name": "souza-api",
   "version": "1.0.0",
-  "description": "API simples para gerar código de pareamento para o Souza-BOT",
+  "description": "API de pareamento do Souza-BOT com Baileys",
+  "type": "module",
   "main": "api/pair.js",
   "scripts": {
-    "start": "vercel dev"
+    "start": "node api/pair.js"
   },
-  "license": "MIT"
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.7.6",
+    "express": "^4.19.2",
+    "pino": "^10.1.0"
+  }
 }
