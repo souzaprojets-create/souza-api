@@ -1,0 +1,10 @@
+{
+  "name": "souza-api",
+  "version": "1.0.0",
+  "description": "API simples para gerar código de pareamento para o Souza-BOT",
+  "main": "api/pair.js",
+  "scripts": {
+    "start": "vercel dev"
+  },
+  "license": "MIT"
+}
