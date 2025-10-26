@@ -1,5 +1,5 @@
 // api/pair.js
-import makeWASocket, { useMultiFileAuthState } from '@whiskeysockets/baileys'
+import makeWASocket from '@whiskeysockets/baileys'
 import Pino from 'pino'
 import express from 'express'
 
@@ -11,15 +11,13 @@ app.get('/api/pair', async (req, res) => {
   if (!number) return res.status(400).json({ error: 'Número não informado' })
 
   try {
-    // Usa autenticação em memória (sem salvar pasta)
-    const { state } = await useMultiFileAuthState('./tmp-auth')
     const sock = makeWASocket({
       printQRInTerminal: false,
-      auth: state,
-      logger: Pino({ level: 'silent' })
+      auth: { creds: {}, keys: {} }, // tudo em memória
+      logger: Pino({ level: 'silent' }),
+      browser: ['Souza-BOT', 'Chrome', '10.0']
     })
 
-    // Gera o código de pareamento
     const code = await sock.requestPairingCode(number)
     if (!code) return res.status(500).json({ error: 'Falha ao gerar código' })
 
@@ -32,4 +30,4 @@ app.get('/api/pair', async (req, res) => {
   }
 })
 
-app.listen(3000, () => console.log('✅ API Souza pareamento ativa!'))
+app.listen(3000, () => console.log('✅ Souza-API rodando sem salvar arquivos'))
